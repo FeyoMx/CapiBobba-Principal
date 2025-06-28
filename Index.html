@@ -1,0 +1,110 @@
+import React, { useState } from 'react';
+
+// Main App component for the CapiBobba advertisement
+const App = () => {
+    // State to control the visibility of the neighborhoods modal
+    const [showNeighborhoodsModal, setShowNeighborhoodsModal] = useState(false);
+
+    // List of neighborhoods to display
+    const neighborhoods = [
+        'Real Navarra',
+        'Señeros',
+        'Qvalta',
+        'Amores de don Juan',
+        'San Alfonso',
+        'Santa Matilde',
+        'Real Toledo',
+        'Ciruelos',
+        'Real de Joyas'
+    ];
+
+    return (
+        <div className="flex justify-center items-start min-h-screen p-4 sm:p-6 bg-black">
+            {/* Main advertisement container with dark background and rounded corners */}
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-gray-900 rounded-2xl overflow-hidden shadow-xl min-h-[95vh]">
+                {/* Image and overlay container */}
+                <div className="relative h-[80vh] flex items-center justify-center">
+                    {/* Main CapiBobba image */}
+                    <img
+                        src="https://i.imgur.com/i7psA3z.jpeg"
+                        alt="Tres bebidas CapiBobba con diferentes sabores y el logo de la marca."
+                        className="w-full h-full object-contain rounded-t-2xl"
+                        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1024x768/F9A8D4/ffffff?text=CapiBobba+Image+Error'; }}
+                    />
+                    {/* Dark overlay for text contrast */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 rounded-t-2xl"></div>
+
+                    {/* Content section (slogan and description) positioned at the top */}
+                    <div className="absolute top-0 left-0 right-0 p-4 sm:p-6 text-center">
+                        <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2 text-white text-shadow-md">
+                            ¡Sabores que te harán sonreír!
+                        </p>
+                        <p className="text-base sm:text-lg md:text-xl text-white text-shadow-md">
+                            Descubre la combinación perfecta de sabor y diversión en cada sorbo.
+                        </p>
+                    </div>
+
+                    {/* Buttons section positioned at the bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-center">
+                        <div className="flex flex-col sm:flex-row justify-center gap-3">
+                            {/* "Order Now!" button linked to WhatsApp */}
+                            <a
+                                href="https://wa.me/5217712794633"
+                                target="_blank"
+                                rel="noopener noreferrer" // Added for security best practice
+                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg inline-flex items-center justify-center"
+                            >
+                                ¡Pide Ahora!
+                            </a>
+                            {/* "View Menu" button linked to the external menu */}
+                            <a
+                                href="https://feyomx.github.io/Menu-CapiBobba-/"
+                                target="_blank"
+                                rel="noopener noreferrer" // Added for security best practice
+                                className="bg-white hover:bg-gray-100 text-purple-700 font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg inline-flex items-center justify-center"
+                            >
+                                Ver Menú
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Bottom section (now a clickable button) */}
+                <button
+                    onClick={() => setShowNeighborhoodsModal(true)} // Opens the modal on click
+                    className="w-full p-4 sm:p-6 bg-purple-700 hover:bg-purple-800 text-white text-center rounded-b-2xl cursor-pointer transition duration-300 ease-in-out transform hover:scale-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75"
+                >
+                    <p className="text-sm sm:text-base font-light">
+                        Servicio a domicilio GRATIS en los fraccionamientos a la redonda de Viñedos
+                    </p>
+                </button>
+            </div>
+
+            {/* Neighborhoods Modal */}
+            {showNeighborhoodsModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg p-6 max-w-sm w-full shadow-lg relative">
+                        <h2 className="text-2xl font-bold mb-4 text-gray-800">Fraccionamientos con Servicio GRATIS</h2>
+                        <ul className="list-disc list-inside text-gray-700 max-h-60 overflow-y-auto pr-2">
+                            {neighborhoods.map((name, index) => (
+                                <li key={index} className="py-1 border-b border-gray-200 last:border-b-0">
+                                    {name}
+                                </li>
+                            ))}
+                        </ul>
+                        {/* Close button for the modal */}
+                        <button
+                            onClick={() => setShowNeighborhoodsModal(false)}
+                            className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-xl font-bold"
+                        >
+                            &times; {/* HTML entity for multiplication sign, often used for close 'x' */}
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default App;
+
