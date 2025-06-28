@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CapiBobba</title>
+    <title>Anuncio CapiBobba</title>
     <!-- Tailwind CSS CDN para estilos rápidos y responsivos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Font "Inter" para una tipografía moderna y legible -->
@@ -40,8 +40,9 @@
             // Estado para controlar la visibilidad del modal de fraccionamientos
             const [showNeighborhoodsModal, setShowNeighborhoodsModal] = React.useState(false);
 
-            // Lista de fraccionamientos a mostrar en el modal
+            // List of neighborhoods to display (UPDATED: "Viñedos" added to the beginning)
             const neighborhoods = [
+                'Viñedos', // Added "Viñedos" here
                 'Real Navarra',
                 'Señeros',
                 'Qvalta',
@@ -50,7 +51,11 @@
                 'Santa Matilde',
                 'Real Toledo',
                 'Ciruelos',
-                'Real de Joyas'
+                'Real de Joyas',
+                'Lindavista',
+                'Valle Diamante',
+                'Esmeralda',
+                'Mineral del oro'
             ];
 
             return (
@@ -102,13 +107,16 @@
                         </div>
                     </div>
 
-                    {/* Sección inferior (ahora un botón) para abrir el modal de fraccionamientos */}
+                    {/* Sección inferior (ahora un botón con dos líneas de texto) */}
                     <button
                         onClick={() => setShowNeighborhoodsModal(true)}
                         className="w-full p-4 sm:p-6 bg-purple-700 hover:bg-purple-800 text-white text-center rounded-b-2xl cursor-pointer transition duration-300 ease-in-out transform hover:scale-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75"
                     >
-                        <p className="text-sm sm:text-base font-light">
-                            Servicio a domicilio GRATIS en los fraccionamientos a la redonda de Viñedos
+                        <p className="text-base sm:text-lg font-light mb-1">
+                            Servicio a domicilio GRATIS
+                        </p>
+                        <p className="text-xs sm:text-sm font-light opacity-80">
+                            Click para ver área de cobertura
                         </p>
                     </button>
 
