@@ -62,7 +62,7 @@
 
              // Componente para la imagen principal y superposición
             const MainImage = () => (
-                <div className="relative h-[80vh] flex items-center justify-center">
+                <>
                     {/* Imagen principal de CapiBobba */}
                     <img
                         src="https://i.imgur.com/i7psA3z.jpeg"
@@ -82,7 +82,7 @@
                             Descubre la combinación perfecta de sabor y diversión en cada sorbo.
                         </p>
                     </div>
-                </div>
+                </>
             );
 
             // Componente para los botones de acción
@@ -151,10 +151,12 @@
 
             return (
                 <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-gray-900 rounded-2xl overflow-hidden container-shadow min-h-[95vh]">
-                    <MainImage />
-                    <ActionButtons />
+                    {/* Contenedor que agrupa la imagen y los botones para establecer el contexto de posicionamiento correcto */}
+                    <div className="relative h-[80vh] flex items-center justify-center">
+                        <MainImage />
+                        <ActionButtons />
+                    </div>
                     <BottomBar onClick={() => setShowNeighborhoodsModal(true)} />
-
                     <NeighborhoodsModal
                         isOpen={showNeighborhoodsModal}
                         onClose={() => setShowNeighborhoodsModal(false)}
