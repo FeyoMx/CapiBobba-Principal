@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuncio CapiBobba</title>
+    <title>Anuncio CapiBobba</title>    
+    <!-- Favicon para la pestaña del navegador (reemplaza 'favicon.ico' con el nombre de tu archivo) -->
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/i7psA3z.png"> 
     <!-- Tailwind CSS CDN para estilos rápidos y responsivos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Font "Inter" para una tipografía moderna y legible -->
@@ -84,7 +86,7 @@
             );
 
             // Componente para los botones de acción
-            const ActionButtons = () => (
+            const ActionButtons = () => (                
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-center">
                     <div className="flex flex-col sm:flex-row justify-center gap-3">
                         {/* Botón "¡Pide Ahora!" enlazado a WhatsApp */}
@@ -152,6 +154,7 @@
                     <MainImage />
                     <ActionButtons />
                     <BottomBar onClick={() => setShowNeighborhoodsModal(true)} />
+
                     <NeighborhoodsModal
                         isOpen={showNeighborhoodsModal}
                         onClose={() => setShowNeighborhoodsModal(false)}
