@@ -1,0 +1,60 @@
+# Nombre del Workflow
+name: Deploy Vite Site to Pages
+
+# Evento que dispara el workflow: un push a la rama 'main'
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# Permisos necesarios para que el workflow pueda desplegar en GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Define los trabajos (jobs) que se ejecutarán
+jobs:
+  # Un único trabajo llamado 'deploy'
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Descarga el código del repositorio
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Configura Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: 'CapiBobba-Principal/package-lock.json'
+
+      # 3. Instala las dependencias (dentro de tu subcarpeta)
+      - name: Install dependencies
+        working-directory: ./CapiBobba-Principal
+        run: npm ci
+
+      # 4. Compila el proyecto (dentro de tu subcarpeta)
+      - name: Build
+        working-directory: ./CapiBobba-Principal
+        run: npm run build
+
+      # 5. Prepara el artefacto para el despliegue
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 6. Sube el artefacto (la carpeta 'dist' compilada)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './CapiBobba-Principal/dist'
+
+      # 7. Despliega el sitio
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
