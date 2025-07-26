@@ -100,7 +100,8 @@ function App() {
     const neighborhoods = [
         'Viñedos', 'Real Navarra', 'Señeros', 'Qvalta', 'Amores de don Juan',
         'San Alfonso', 'Santa Matilde', 'Real Toledo', 'Ciruelos', 'Real de Joyas',
-        'Lindavista', 'Valle Diamante', 'Esmeralda', 'Mineral del oro'
+        'Lindavista', 'Valle Diamante', 'Esmeralda', 'Mineral del oro', 'Residencial Aurora',
+        'Platinum', 'Bosques de Santa Matilde','Sendero de los pinos'
     ];
 
     return (
