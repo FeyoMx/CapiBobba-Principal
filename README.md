@@ -1,4 +1,5 @@
 Anuncio Interactivo para CapiBobba
+
 Este proyecto es una página de aterrizaje (landing page) moderna y responsiva creada para CapiBobba, un servicio de entrega de bebidas. La página funciona como un anuncio digital interactivo, diseñado para captar la atención del cliente y facilitar el proceso de pedido a través de llamadas a la acción claras.
 
 El sitio está desplegado y se puede ver en vivo aquí:
