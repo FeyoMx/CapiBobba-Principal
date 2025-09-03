@@ -22,7 +22,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -30,11 +30,39 @@ jobs:
         with:
           node-version: '20'
           
+      - name: Debug - Show package.json
+        run: cat package.json
+        
+      - name: Debug - Check Node and npm versions
+        run: |
+          node --version
+          npm --version
+          
       - name: Install dependencies
-        run: npm install
+        run: |
+          echo "Installing dependencies..."
+          npm install --verbose
+          echo "Dependencies installed successfully"
+
+      - name: Debug - List files after install
+        run: |
+          echo "Files in root:"
+          ls -la
+          echo "node_modules exists:"
+          ls -la node_modules/ | head -10
 
       - name: Build project
-        run: npm run build
+        run: |
+          echo "Starting build process..."
+          npm run build --verbose
+          echo "Build completed successfully"
+
+      - name: Debug - Check dist folder
+        run: |
+          echo "Contents of dist folder:"
+          ls -la dist/
+          echo "dist/index.html exists:"
+          test -f dist/index.html && echo "YES" || echo "NO"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
