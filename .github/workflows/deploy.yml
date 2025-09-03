@@ -24,13 +24,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
 
       - name: Install dependencies
-        # ELIMINADO: working-directory
-        run: npm ci
+        run: npm install --frozen-lockfile
 
       - name: Build
         # ELIMINADO: working-directory
