@@ -30,39 +30,14 @@ jobs:
         with:
           node-version: '20'
           
-      - name: Debug - Show package.json
-        run: cat package.json
-        
-      - name: Debug - Check Node and npm versions
+      - name: Clean install dependencies
         run: |
-          node --version
-          npm --version
-          
-      - name: Install dependencies
-        run: |
-          echo "Installing dependencies..."
-          npm install --verbose
-          echo "Dependencies installed successfully"
-
-      - name: Debug - List files after install
-        run: |
-          echo "Files in root:"
-          ls -la
-          echo "node_modules exists:"
-          ls -la node_modules/ | head -10
+          rm -rf package-lock.json node_modules
+          npm install --no-optional
+          npm install
 
       - name: Build project
-        run: |
-          echo "Starting build process..."
-          npm run build --verbose
-          echo "Build completed successfully"
-
-      - name: Debug - Check dist folder
-        run: |
-          echo "Contents of dist folder:"
-          ls -la dist/
-          echo "dist/index.html exists:"
-          test -f dist/index.html && echo "YES" || echo "NO"
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
